@@ -63,3 +63,29 @@ function problem65(a, b) {
 problem65([1, 2, 3, 4], ['a', 'b', 'c', 'd']);
 
 // 문제 66: 블럭탑쌓기
+function solution(blocks, rule){
+    let answer = [];
+    for (let block of blocks){
+      answer.push(check(block, rule));
+    }
+    return answer;
+  }
+  
+  function check(arr, rule){
+    let toast = rule.indexOf(rule[0]);
+    for (let chr of arr){
+      if (rule.includes(chr)){
+        if (toast > rule.indexOf(chr)){
+          return '불가능';
+        }
+        toast = rule.indexOf(chr);
+      }
+    }
+    return '가능';
+  }
+  
+  
+  const blocks = ['ABCDEF', 'BCAD', 'ADEFQRX', 'BEDFG', 'AEBFDGCH'];
+  const rule = 'ABCD';
+  
+  console.log(solution(blocks, rule));
