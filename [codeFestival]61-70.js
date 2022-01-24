@@ -89,3 +89,47 @@ function solution(blocks, rule){
   const rule = 'ABCD';
   
   console.log(solution(blocks, rule));
+
+
+  // 문제67: 민규의 약속
+  function solution(n){
+    let 사람 = 0;
+    let 총악수 = 0;
+    let temp = 0;
+    while(true){
+      총악수 = parseInt((사람*(사람-1))/2, 10);
+      if(n < 총악수){
+        break;
+      }
+      temp = 총악수;
+      사람 += 1;
+    }
+    return [parseInt(n-temp, 10), 사람];
+  }
+  
+  const 악수의수 = 59;
+  console.log(solution(악수의수));
+
+
+  // 문제 68: 버스시간표
+  function solution(버스시간, 기준시간){
+    let answer = [];
+    기준시간 = 기준시간.split(':').map(n => parseInt(n, 10));
+    기준시간 = (기준시간[0] * 60) + 기준시간[1];
+  
+    for (let i in 버스시간){
+      let time = 버스시간[i].split(':').map(n => parseInt(n, 10));
+      time = (time[0] * 60) + time[1];
+  
+      if (time < 기준시간){
+        answer.push('지나갔습니다');
+      } else{
+        let 시간 = parseInt((time - 기준시간) / 60, 10);
+        let 분 = (time - 기준시간) % 60;
+        answer.push(String(시간).padStart(2, 0) + '시간 ' + String(분).padStart(2, 0) + '분');
+      }
+    }
+    return answer;
+  }
+  
+  console.log(solution(["12:30", "13:20", "14:13"], "12:40"));
